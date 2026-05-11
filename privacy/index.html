@@ -61,7 +61,7 @@
     <h1>Política de privacidad</h1>
     <p class="meta">
       <strong>ArmoryPro</strong> · Paquete de aplicación: <code>app.armorypro.inventory</code><br />
-      Última actualización: 27 de abril de 2026
+      Última actualización: 6 de mayo de 2026
     </p>
 
     <p>
@@ -129,10 +129,85 @@
       <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Política de privacidad de Google</a>.
     </p>
 
+    <h2>Datos de tu cuenta Google y uso de las APIs de Google</h2>
+    <p>
+      En cumplimiento de la
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener noreferrer">Política de datos de usuario de los servicios API de Google</a>,
+      de los
+      <a href="https://developers.google.com/terms" rel="noopener noreferrer">Términos del Servicio de las APIs de Google</a>
+      y demás términos aplicables, esta sección describe de forma <strong>explícita y detallada</strong>
+      (<strong>1</strong>) <strong>qué datos de usuario de Google</strong> puede acceder, recibir o con los que puede interactuar la aplicación, y
+      (<strong>2</strong>) <strong>cómo los usa, procesa o trata</strong> y con <strong>qué finalidad</strong>.
+      Todo es <strong>opcional</strong> y depende de que actives la función y concedas el permiso en pantalla.
+    </p>
+
+    <h3>Datos a los que la aplicación accede (tipos concretos de datos de usuario de Google)</h3>
+    <p>Según las funciones que utilices, ArmoryPro puede <strong>acceder, obtener o interactuar</strong> con estos datos:</p>
+    <ul>
+      <li>
+        <strong>Inicio de sesión con Google y Firebase Authentication:</strong>
+        <strong>correo electrónico</strong> principal de tu cuenta Google;
+        <strong>identificador de usuario de Firebase</strong> (<abbr title="User identifier">UID</abbr>) vinculado a tu sesión;
+        <strong>token de identidad (ID token)</strong> emitido por Google y utilizado con Firebase para crear, renovar y validar la sesión autenticada;
+        y, si Google los incluye en la credencial de inicio de sesión, otros <strong>datos básicos de perfil</strong> (por ejemplo <strong>nombre para mostrar</strong>).
+        En la aplicación se emplean de forma rutinaria, como mínimo, el <strong>UID</strong> y el <strong>correo</strong> para las finalidades descritas más abajo.
+      </li>
+      <li>
+        <strong>Cloud Firestore:</strong>
+        lectura del documento <code>users/{uid}</code> y del campo booleano <code>isPremium</code>, donde <code>uid</code> es tu UID de Firebase,
+        para conocer si el backend marca tu cuenta como suscriptor premium.
+      </li>
+      <li>
+        <strong>Firebase Cloud Functions</strong> (función invocable <code>redeemCoupon</code>):
+        cuando inicias un canje, la aplicación envía una petición <strong>autenticada</strong> (Firebase valida tu identidad mediante el token de sesión)
+        y un cuerpo con el <strong>correo electrónico</strong> y el <strong>código de cupón</strong> que introduces en la pantalla de canje.
+      </li>
+      <li>
+        <strong>Google Drive (API de Google Drive)</strong>, con autorización OAuth en el alcance
+        <strong><code>https://www.googleapis.com/auth/drive.file</code></strong>:
+        <strong>metadatos</strong> de carpetas y ficheros pertinentes (identificadores, nombres, fechas, tamaño, tipo MIME);
+        y <strong>contenido binario</strong> de los archivos de copia de seguridad que la aplicación <strong>crea, sobrescribe o te pide abrir</strong> en Drive
+        (p. ej. un archivo comprimido generado en el dispositivo con los datos que eliges incluir en la copia).
+      </li>
+    </ul>
+    <p>
+      La aplicación <strong>no</strong> accede a Gmail, Contactos de Google, Google Calendar ni al conjunto de tus archivos de Drive fuera del permiso <code>drive.file</code>.
+    </p>
+
+    <h3>Uso, tratamiento y finalidades de esos datos</h3>
+    <p>La aplicación <strong>utiliza y procesa</strong> la información anterior únicamente para las finalidades siguientes:</p>
+    <ul>
+      <li><strong>Autenticación y sesión:</strong> verificar tu identidad frente a Google, mantener la sesión con Firebase y asociar las acciones basadas en cuenta a tu usuario (UID / correo).</li>
+      <li><strong>Funciones de cuenta en el servidor:</strong> leer <code>isPremium</code> en Firestore para reflejar de forma coherente el estado premium junto con otras fuentes (p. ej. compra en Google Play cuando exista).</li>
+      <li><strong>Canje administrado en servidor:</strong> permitir que la función <code>redeemCoupon</code> valide el cupón y el contexto de cuenta de forma autenticada, usando el payload (correo y código) según el contrato del backend.</li>
+      <li><strong>Respaldo y restauración en Drive:</strong> crear la carpeta de copias, subir o reemplazar el archivo de respaldo, listar copias, eliminar copias obsoletas cuando la lógica de la app lo requiera tras una nueva copia, y descargar o leer una copia que selecciones para restaurar; el archivo contiene los datos de inventario y documentos que incluyas en la exportación.</li>
+      <li><strong>Limitaciones de uso:</strong> no vendemos datos de usuario de Google ni el contenido obtenido por las APIs; no usamos esos datos para publicidad personalizada de terceros.</li>
+    </ul>
+
+    <h3>Almacenamiento y compartición</h3>
+    <p>
+      Registros de autenticación en Firebase, datos leídos desde Firestore, respuestas de Cloud Functions y ficheros en Drive se
+      <strong>almacenan y procesan</strong> principalmente en la infraestructura de <strong>Google</strong>, conforme a las políticas de Google/Firebase.
+      Los SDK de Google en el dispositivo pueden conservar de forma temporal credenciales o tokens en almacenamiento protegido de la app según el comportamiento estándar de Android y de los propios SDK.
+      El desarrollador (responsable indicado arriba) no vende ni cede tu correo, UID o copias de seguridad a terceros; no hay cesión a redes publicitarias por este conducto.
+      Cualquier acceso administrativo a proyectos Firebase/Drive por mantenimiento queda limitado a lo necesario para operar la aplicación y sujeto a obligaciones de confidencialidad y seguridad habituales.
+    </p>
+    <h3>Revocación y control</h3>
+    <p>
+      Puedes dejar de usar estas funciones en la aplicación, cerrar sesión cuando esté disponible y revocar el acceso de la aplicación a tu cuenta Google desde la configuración de seguridad de tu cuenta Google
+      (incluida la gestión de aplicaciones con acceso a tu cuenta y permisos de Google Drive).
+    </p>
+    <h3>Cumplimiento — Política de datos de usuario de los servicios API de Google</h3>
+    <p>
+      El uso de la información recibida desde las APIs de Google se ajustará a la
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener noreferrer">Política de datos de usuario de los servicios API de Google</a>,
+      incluidas las exigencias de <strong>uso limitado</strong> cuando correspondan.
+    </p>
+
     <h2>Copia de seguridad en Google Drive</h2>
     <p>
       Si activas funciones que suben una copia de tus datos a <strong>Google Drive</strong>, esos archivos se almacenan en el espacio de tu cuenta de Google según tu configuración de Drive.
-      La aplicación solo puede acceder a lo que permitas mediante el flujo de autorización de Google.
+      La aplicación solo puede acceder a lo que permitas mediante el flujo de autorización de Google (véase la sección anterior sobre el alcance <code>drive.file</code>).
       Puedes revocar el acceso desde la configuración de tu cuenta Google.
     </p>
 
@@ -207,7 +282,7 @@
     <h1>Privacy Policy</h1>
     <p class="meta">
       <strong>ArmoryPro</strong> · Application package: <code>app.armorypro.inventory</code><br />
-      Last updated: April 27, 2026
+      Last updated: May 6, 2026
     </p>
 
     <p>
@@ -275,10 +350,85 @@
       <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google Privacy Policy</a>.
     </p>
 
+    <h2>Your Google account data and use of Google APIs</h2>
+    <p>
+      To comply with the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener noreferrer">Google API Services User Data Policy</a>,
+      the
+      <a href="https://developers.google.com/terms" rel="noopener noreferrer">Google APIs Terms of Service</a>,
+      and other applicable Google APIs terms, this section <strong>clearly and thoroughly</strong> explains
+      (<strong>1</strong>) <strong>what Google user data</strong> the app accesses, collects, or interacts with, and
+      (<strong>2</strong>) <strong>how the app uses, processes, or handles</strong> that data and the <strong>purposes</strong> for doing so.
+      Everything here is <strong>optional</strong> and only applies if you enable the feature and grant permission in the UI.
+    </p>
+
+    <h3>Google user data the app accesses (specific categories)</h3>
+    <p>Depending on the ArmoryPro features you use, the app may <strong>access, receive, or interact with</strong> the following Google user data:</p>
+    <ul>
+      <li>
+        <strong>Google Sign-In and Firebase Authentication:</strong>
+        your Google account <strong>email address</strong>;
+        your Firebase Authentication <strong>user identifier</strong> (<abbr title="User identifier">UID</abbr>) for the signed-in session;
+        Google‑issued <strong>ID tokens</strong> used with Firebase to create, refresh, and validate the authenticated session;
+        and, if included in the sign-in credential, basic Google account <strong>profile fields</strong> (for example <strong>display name</strong>).
+        The app routinely relies on at least your <strong>UID</strong> and <strong>email</strong> for the purposes described under “How the data is used”.
+      </li>
+      <li>
+        <strong>Cloud Firestore:</strong>
+        reads the document <code>users/{uid}</code> and the boolean field <code>isPremium</code>, where <code>uid</code> is your Firebase UID,
+        to determine whether the backend marks your account as premium.
+      </li>
+      <li>
+        <strong>Firebase Cloud Functions</strong> (callable function <code>redeemCoupon</code>):
+        when you redeem a coupon, the app sends an <strong>authenticated</strong> request (Firebase validates your identity using the session token)
+        with a payload that includes the <strong>email address</strong> and <strong>coupon code</strong> you enter in the redemption screen.
+      </li>
+      <li>
+        <strong>Google Drive (Google Drive API)</strong>, authorized under the OAuth scope
+        <strong><code>https://www.googleapis.com/auth/drive.file</code></strong>:
+        <strong>file and folder metadata</strong> (identifiers, names, timestamps, size, MIME type);
+        and <strong>binary file content</strong> for backup files the app <strong>creates, overwrites, or asks you to open</strong> in Drive
+        (for example a compressed archive generated on-device with the data you choose to include in the backup).
+      </li>
+    </ul>
+    <p>
+      The app does <strong>not</strong> access Gmail, Google Contacts, Google Calendar, or your entire Drive outside the <code>drive.file</code> permission.
+    </p>
+
+    <h3>How the data is used, processed, and the purposes</h3>
+    <p>The app <strong>uses and processes</strong> this information only for the following purposes:</p>
+    <ul>
+      <li><strong>Authentication and session management:</strong> verify your identity with Google, keep your Firebase session, and tie account-based actions to your user (UID / email).</li>
+      <li><strong>Server-backed account state:</strong> read <code>isPremium</code> in Firestore to reflect premium entitlement together with other sources (for example Google Play purchases where applicable).</li>
+      <li><strong>Server-managed redemption:</strong> let the <code>redeemCoupon</code> function validate the coupon and account context in an authenticated way, using the email and code payload required by the backend contract.</li>
+      <li><strong>Drive backup and restore:</strong> create the backup folder, upload or replace the backup artifact, list backups, delete obsolete backup files when app logic requires it after a new upload, and download or read a backup you select to restore; file contents reflect inventory and document data you include in the export.</li>
+      <li><strong>Use limitations:</strong> we do not sell Google user data or API-derived content; we do not use that data for third‑party personalized advertising.</li>
+    </ul>
+
+    <h3>Storage and sharing</h3>
+    <p>
+      Firebase Authentication records, Firestore reads/writes as implemented, Cloud Functions responses, and Drive files are
+      <strong>stored and processed</strong> primarily on <strong>Google</strong> infrastructure under Google’s/Firebase’s policies.
+      Google SDKs on the device may temporarily cache credentials or tokens in secured app storage consistent with standard Android and SDK behavior.
+      The developer (controller listed above) does not broker or sell your email, UID, or backup files to third parties; data is not provided to ad networks through these integrations.
+      Any administrative access to Firebase/Drive projects for operations is limited to what is needed to run the app and subject to ordinary confidentiality and security obligations.
+    </p>
+    <h3>Revocation and control</h3>
+    <p>
+      You can stop using these features in the app, sign out where available, and revoke the app’s access to your Google Account from your Google Account security settings
+      (including third‑party account access and Google Drive permissions).
+    </p>
+    <h3>Compliance — Google API Services User Data Policy</h3>
+    <p>
+      Our use of information received from Google APIs will adhere to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener noreferrer">Google API Services User Data Policy</a>,
+      including the <strong>Limited Use</strong> requirements where applicable.
+    </p>
+
     <h2>Backup to Google Drive</h2>
     <p>
       If you enable features that upload a copy of your data to <strong>Google Drive</strong>, those files are stored in your Google account space according to your Drive settings.
-      The app can only access what you authorize through Google’s consent flow.
+      The app can only access what you authorize through Google’s consent flow (see the previous section on the <code>drive.file</code> scope).
       You can revoke access from your Google Account settings.
     </p>
 
