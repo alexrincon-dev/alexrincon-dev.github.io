@@ -121,6 +121,14 @@
       <li><strong>Firebase Remote Config:</strong> parámetros remotos para comportamiento de la aplicación sin exponer datos personales por sí mismos.</li>
     </ul>
     <p>
+      <strong>Firebase Analytics (detalle):</strong>
+      Además de la información técnica del dispositivo, la aplicación puede registrar <strong>eventos de uso</strong> que describen cómo interactúas con las funciones
+      (por ejemplo inicio de ciertos flujos, tipo de acción en inventario o munición, cambios de ajustes numéricos, procedencia de navegación entre pantallas, o si un archivo se añadió desde cámara o selector).
+      <strong>No incorporamos de forma intencionada</strong> en esos eventos el contenido descriptivo de tus registros (nombres de armas, números de serie, títulos o texto de documentos, ni imágenes).
+      En documentos generales, un evento puede indicar si el archivo se guardó en la raíz o en una subcarpeta mediante un <strong>identificador técnico interno</strong> generado por la app.
+      También pueden registrarse señales relacionadas con <strong>límites de la versión gratuita</strong> cuando la aplicación los detecta (sin enviar el detalle de tu inventario).
+    </p>
+    <p>
       Estos servicios pueden tratar información técnica como, entre otros: tipo de dispositivo, versión del sistema operativo, eventos generales de uso y registros asociados a fallos (Crashlytics).
     </p>
     <p>
@@ -341,6 +349,14 @@
       <li><strong>Cloud Firestore / Firebase Functions:</strong> data needed for server-backed features (for example account-linked features or coupons), depending on what you use in the app.</li>
       <li><strong>Firebase Remote Config:</strong> remote parameters for app behavior; these parameters do not expose personal data by themselves.</li>
     </ul>
+    <p>
+      <strong>Firebase Analytics (detail):</strong>
+      In addition to device technical data, the app may log <strong>usage events</strong> that describe how you interact with features
+      (for example starting certain flows, types of inventory or ammo actions, numeric setting changes, navigation entry points, or whether a file was added via camera or file picker).
+      We do <strong>not intentionally include</strong> descriptive inventory content in those events (firearm names, serial numbers, document titles or body text, or images).
+      For general documents, an event may indicate whether a file was saved at root or in a subfolder using an app-generated <strong>internal technical identifier</strong>.
+      Signals related to <strong>free-tier limits</strong> may also be recorded when the app detects them (without sending your inventory details).
+    </p>
     <p>
       These services may process technical information including, among other things: device type, OS version, general usage events, and crash-related logs (Crashlytics).
     </p>
