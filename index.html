@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="ArmoryPro — official app homepage. Firearms and ammunition inventory for Android. Privacy policy and how we use Google account data." />
+  <meta name="description" content="ArmoryPro — official app homepage. Firearms and ammunition inventory for Android on Google Play. Privacy policy and how we use Google account data." />
   <title>ArmoryPro — Official site | Sitio oficial</title>
   <style>
     :root {
@@ -109,6 +109,21 @@
       margin: 1.25rem 0 0.5rem;
     }
     .privacy-cta:hover { filter: brightness(1.08); }
+    .play-store {
+      margin: 1.35rem 0 0.25rem;
+      text-align: center;
+    }
+    .play-badge {
+      display: inline-block;
+      line-height: 0;
+      transition: opacity 0.15s ease;
+    }
+    .play-badge:hover { opacity: 0.88; }
+    .play-badge img {
+      height: 56px;
+      width: auto;
+      max-width: 100%;
+    }
     .privacy-url {
       font-size: 0.8rem;
       text-align: center;
@@ -147,7 +162,23 @@
       <img src="logo.png" width="88" height="88" alt="ArmoryPro logo" class="logo" />
       <h1>ArmoryPro</h1>
       <p class="tagline">Inventario profesional · Professional inventory</p>
-      <p class="pkg">Android · <code>app.armorypro.inventory</code> · Google Play</p>
+      <p class="pkg">Android · <code>app.armorypro.inventory</code></p>
+      <div class="play-store">
+        <a
+          class="play-badge"
+          href="https://play.google.com/store/apps/details?id=app.armorypro.inventory"
+          rel="noopener noreferrer"
+          aria-label="Disponible en Google Play"
+        >
+          <img
+            src="https://play.google.com/intl/es-419/badges/static/images/badges/es_badge_web_generic.png"
+            alt="Disponible en Google Play"
+            width="646"
+            height="250"
+            loading="lazy"
+          />
+        </a>
+      </div>
     </div>
 
     <p class="privacy-url">
@@ -174,22 +205,27 @@
       </p>
       <ul>
         <li>Alta y seguimiento de armas y munición, movimientos (compra, consumo, transferencia, ajustes), y calibres.</li>
+        <li>Seguimiento de limpieza o mantenimiento de armas, con recordatorios e historial en el dispositivo.</li>
         <li>Gestión de documentos asociados (por ejemplo licencias o registros), imágenes desde la cámara o archivos del dispositivo.</li>
         <li>Sesión local opcional con bloqueo por PIN o biométrico (según plan y dispositivo).</li>
-        <li>Funciones opcionales en la nube: inicio de sesión con Google y Firebase para características ligadas a cuenta (por ejemplo estado premium o canje de códigos), y copia de seguridad en Google Drive si la activas tú.</li>
-        <li>Herramientas de diagnóstico de estabilidad (por ejemplo informes de error) según la configuración del proyecto con Google Firebase.</li>
+        <li>Versión premium opcional mediante compra en Google Play (sin obligación de iniciar sesión con Firebase).</li>
+        <li>Funciones opcionales en la nube: inicio de sesión con Google y Firebase para características ligadas a cuenta (por ejemplo canje de códigos), y copia de seguridad en Google Drive si la activas tú.</li>
+        <li>Estadísticas de uso agregadas y diagnóstico de estabilidad (Firebase Analytics y Crashlytics), sin enviar el contenido de tu inventario en esos eventos.</li>
       </ul>
       <p>
-        Las funciones exactas y los límites del plan gratuito frente al de pago pueden actualizarse; la descripción en Google Play es la referencia comercial actualizada para los usuarios finales.
+        Descarga e información actualizada en
+        <a href="https://play.google.com/store/apps/details?id=app.armorypro.inventory" rel="noopener noreferrer">Google Play</a>.
+        Las funciones exactas y los límites del plan gratuito frente al de pago pueden evolucionar; la ficha de Play es la referencia comercial para usuarios finales.
       </p>
 
       <h2>Transparencia: para qué pedimos datos y permisos</h2>
       <p>Solo solicitamos acceso a datos o permisos cuando una función concreta lo necesita. En resumen:</p>
       <ul>
-        <li><strong>Cuenta de Google / Firebase:</strong> inicio de sesión opcional para identificar tu cuenta en el backend y usar funciones que lo requieran (por ejemplo canje de cupones o estado premium en servidor). Detalle en la política de privacidad.</li>
+        <li><strong>Google Play (compras in-app):</strong> si adquieres premium, el pago lo gestiona Google; la app consulta el estado de la compra para desbloquear funciones. No recibimos datos de tu tarjeta.</li>
+        <li><strong>Cuenta de Google / Firebase:</strong> inicio de sesión opcional para funciones ligadas a cuenta (por ejemplo canje de cupones o estado premium en servidor). Detalle en la política de privacidad.</li>
         <li><strong>Google Drive (alcance limitado <code>drive.file</code>):</strong> solo si activas la copia en la nube; la app accede a los archivos de copia que crea o que abres con la app, no a todo tu Drive ni a tu correo.</li>
         <li><strong>Cámara y archivos:</strong> solo si tú eliges adjuntar fotos o documentos a tus registros.</li>
-        <li><strong>Internet:</strong> para servicios que dependen de red (Firebase, Drive, etc.) cuando uses esas opciones.</li>
+        <li><strong>Internet:</strong> para servicios que dependen de red (Firebase, Drive, facturación de Play, etc.) cuando uses esas opciones.</li>
       </ul>
       <p>
         El tratamiento detallado (qué datos de Google, fines, almacenamiento y tus derechos) está en la
@@ -219,22 +255,27 @@
       </p>
       <ul>
         <li>Create and track firearms and ammunition, movements (purchase, consumption, transfer, adjustments), and calibers.</li>
+        <li>Firearm cleaning and maintenance tracking with on-device reminders and history.</li>
         <li>Attach documents (for example licenses or registrations) and images from the camera or device storage.</li>
         <li>Optional local session protection with PIN or biometrics (depending on plan and device).</li>
-        <li>Optional cloud features: Google Sign-In with Firebase for account-linked capabilities (for example premium state or coupon redemption), and Google Drive backup if you explicitly enable it.</li>
-        <li>Stability tooling (for example crash reporting) as configured with Google Firebase.</li>
+        <li>Optional premium upgrade via Google Play in-app purchase (Firebase sign-in not required for Play-based premium).</li>
+        <li>Optional cloud features: Google Sign-In with Firebase for account-linked capabilities (for example coupon redemption), and Google Drive backup if you explicitly enable it.</li>
+        <li>Aggregated usage analytics and crash diagnostics (Firebase Analytics and Crashlytics), without sending inventory content in those events.</li>
       </ul>
       <p>
-        Exact features and free vs paid limits may evolve; the Google Play listing is the up‑to‑date commercial description for end users.
+        Download and up-to-date details on
+        <a href="https://play.google.com/store/apps/details?id=app.armorypro.inventory" rel="noopener noreferrer">Google Play</a>.
+        Exact features and free vs paid limits may evolve; the Play listing is the commercial reference for end users.
       </p>
 
       <h2>Transparency: why we request user data</h2>
       <p>We request data or permissions only when a specific feature needs them. In summary:</p>
       <ul>
-        <li><strong>Google account &amp; Firebase:</strong> optional sign-in to identify your account for backend features that require it (for example coupon redemption or server-side premium state). See the privacy policy for specifics.</li>
+        <li><strong>Google Play (in-app purchases):</strong> if you buy premium, Google handles payment; the app checks purchase status to unlock features. We do not receive your card details.</li>
+        <li><strong>Google account &amp; Firebase:</strong> optional sign-in for account-linked backend features (for example coupon redemption or server-side premium state). See the privacy policy for specifics.</li>
         <li><strong>Google Drive (<code>drive.file</code> scope):</strong> only if you turn on cloud backup; the app accesses backup files it creates or that you open with the app—not your entire Drive or Gmail.</li>
         <li><strong>Camera &amp; files:</strong> only when you choose to attach photos or documents to records.</li>
-        <li><strong>Internet:</strong> for network-backed services (Firebase, Drive, etc.) when you use those options.</li>
+        <li><strong>Internet:</strong> for network-backed services (Firebase, Drive, Play billing, etc.) when you use those options.</li>
       </ul>
       <p>
         Full disclosure of Google user data accessed, how it is used, stored, and shared is in our
@@ -249,7 +290,8 @@
     </section>
 
     <footer>
-      © 2026 Alejandro Rincón · ArmoryPro · <code>app.armorypro.inventory</code><br />
+      © 2026 Alejandro Rincón · ArmoryPro · <code>app.armorypro.inventory</code> ·
+      <a href="https://play.google.com/store/apps/details?id=app.armorypro.inventory" rel="noopener noreferrer">Google Play</a><br />
       <span lang="es">Página oficial en dominio verificable propio del desarrollador (no alojada en redes sociales ni Google Sites como dominio principal).</span><br />
       <span lang="en">Official page on a developer-controlled verifiable domain (not hosted as a primary site on social networks or Google Sites).</span>
     </footer>
